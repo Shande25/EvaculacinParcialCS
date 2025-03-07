@@ -1,21 +1,36 @@
 ﻿@model EjemploMVC_MAT.Models.Card
 
-@{
-    ViewData["Title"] = "Detalles de la Carta";
-}
-
-<h1>@Model.Name</h1>
-
-<img src="@Model.CardImages.FirstOrDefault()?.ImageUrl" alt="@Model.Name" class="card-image" />
-
-<p><strong>Tipo:</strong> @Model.Type</p>
-<p><strong>Descripción:</strong> @Model.Desc</p>
-<p><strong>Arquetipo:</strong> @Model.Archetype</p>
-
-<h3>Precios:</h3>
-<ul>
-    <li><strong>eBay:</strong> @Model.CardPrices?.FirstOrDefault()?.EbayPrice</li>
-    <li><strong>Amazon:</strong> @Model.CardPrices?.FirstOrDefault()?.AmazonPrice</li>
-</ul>
-
-<a href="@Url.Action("Index", "Card")">Volver al listado de cartas</a>
+<div class="container">
+    <h1>@Model.Name</h1>
+    <div class="row">
+        <div class="col-md-6">
+            @if (Model.CardImages != null && Model.CardImages.Any())
+            {
+                <img src="@Model.CardImages.FirstOrDefault()?.ImageUrl" class="img-fluid" alt="@Model.Name" />
+            }
+            else
+            {
+                <p>No image available</p>
+            }
+        </div>
+        <div class="col-md-6">
+            <h4>Descripción</h4>
+            <p>@Model.Desc</p>
+            <h4>Precios</h4>
+            <ul>
+                @if (Model.CardPrices != null && Model.CardPrices.Any())
+                {
+                    <li>Cardmarket: $@Model.CardPrices?.FirstOrDefault()?.CardmarketPrice</li>
+                    <li>Tcgplayer: $@Model.CardPrices?.FirstOrDefault()?.TcgplayerPrice</li>
+                    <li>Ebay: $@Model.CardPrices?.FirstOrDefault()?.EbayPrice</li>
+                    <li>Amazon: $@Model.CardPrices?.FirstOrDefault()?.AmazonPrice</li>
+                }
+                else
+                {
+                    <li>No prices available</li>
+                }
+            </ul>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+</div>

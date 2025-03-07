@@ -1,26 +1,31 @@
 ﻿@model List<EjemploMVC_MAT.Models.Card>
 
-@{
-    ViewData["Title"] = "Cartas de Blue-Eyes";
-}
+<div class="container">
+    <h1>Lista de Cartas</h1>
+    <div class="row">
+        @foreach (var card in Model)
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="@card.CardImages?.FirstOrDefault()?.ImageUrl" class="card-img-top" alt="@card.Name" />
+                    <div class="card-body">
+                        <h5 class="card-title">@card.Name</h5>
+                        <p class="card-text">@card.Desc</p>
+                        <a href="@Url.Action("Details", "Home", new { id = card.Id })" class="btn btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 
-<h1>Cartas de Blue-Eyes</h1>
-
-<div class="card-list">
-    @foreach (var card in Model)
-    {
-        <div class="card">
-            <img src="@card.CardImages.FirstOrDefault()?.ImageUrl" alt="@card.Name" class="card-image" />
-            <h2>@card.Name</h2>
-            <p><strong>Precio en eBay:</strong> @card.CardPrices?.FirstOrDefault()?.EbayPrice</p>
-            <a href="@Url.Action("Details", "Card", new { id = card.Id })">Ver detalles</a>
-        </div>
-    }
-</div>
-
-<div class="pagination">
-    <!-- Paginación -->
-    <a href="@Url.Action("Index", "Card", new { page = 1 })">Primera</a>
-    <a href="@Url.Action("Index", "Card", new { page = 2 })">Página 2</a>
-    <!-- Agregar más enlaces según el número de páginas -->
+    <div class="pagination">
+        <ul class="pagination">
+            @for (var i = 1; i <= (int)ViewData["TotalPages"]; i++)
+            {
+                <li class="page-item @(i == (int)ViewData["CurrentPage"] ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", "Home", new { page = i })">@i</a>
+                </li>
+            }
+        </ul>
+    </div>
 </div>
