@@ -1,27 +1,27 @@
 ﻿namespace EjemploMVC_MAT.Models
 {
-    public class CardImage
+    public class Card_Image
     {
-        public string ImageUrl { get; set; }
-        public string ImageUrlSmall { get; set; }
-        public string ImageUrlCropped { get; set; }
+        public string Image_Url { get; set; }
+        public string Image_Url_Small { get; set; }
+        public string Image_Url_Cropped { get; set; }
     }
 
-    public class CardPrice
+    public class Card_Price
     {
-        public string CardmarketPrice { get; set; }
-        public string TcgplayerPrice { get; set; }
-        public string EbayPrice { get; set; }
-        public string AmazonPrice { get; set; }
-        public string CoolstuffincPrice { get; set; }
+        public string Cardmarket_Price { get; set; }
+        public string Tcgplayer_Price { get; set; }
+        public string Ebay_Price { get; set; }
+        public string Amazon_Price { get; set; }
+        public string Coolstuffinc_Price { get; set; }
     }
 
-    public class CardSet
+    public class Card_Set
     {
-        public string SetName { get; set; }
-        public string SetCode { get; set; }
-        public string SetRarity { get; set; }
-        public string SetPrice { get; set; }
+        public string Set_Name { get; set; }
+        public string Set_Code { get; set; }
+        public string Set_Rarity { get; set; }
+        public string Set_Price { get; set; }
     }
 
     public class Card
@@ -31,9 +31,10 @@
         public string Type { get; set; }
         public string Desc { get; set; }
         public string Archetype { get; set; }
-        public string YgoprodeckUrl { get; set; }
-        public List<CardSet> CardSets { get; set; }
-        public List<CardImage> CardImages { get; set; }
-        public List<CardPrice> CardPrices { get; set; }
+        public string Ygoprodeck_Url { get; set; }
+        public List<Card_Set> Card_Sets { get; set; }
+        public List<Card_Image> Card_Images { get; set; }
+        public List<Card_Price> Card_Prices { get; set; }
+        public string Image_Url { get; set; }
     }
 }

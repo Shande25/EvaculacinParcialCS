@@ -1,36 +1,28 @@
 ﻿@model EjemploMVC_MAT.Models.Card
 
-<div class="container">
-    <h1>@Model.Name</h1>
-    <div class="row">
-        <div class="col-md-6">
-            @if (Model.CardImages != null && Model.CardImages.Any())
-            {
-                <img src="@Model.CardImages.FirstOrDefault()?.ImageUrl" class="img-fluid" alt="@Model.Name" />
-            }
-            else
-            {
-                <p>No image available</p>
-            }
-        </div>
-        <div class="col-md-6">
-            <h4>Descripción</h4>
-            <p>@Model.Desc</p>
-            <h4>Precios</h4>
-            <ul>
-                @if (Model.CardPrices != null && Model.CardPrices.Any())
-                {
-                    <li>Cardmarket: $@Model.CardPrices?.FirstOrDefault()?.CardmarketPrice</li>
-                    <li>Tcgplayer: $@Model.CardPrices?.FirstOrDefault()?.TcgplayerPrice</li>
-                    <li>Ebay: $@Model.CardPrices?.FirstOrDefault()?.EbayPrice</li>
-                    <li>Amazon: $@Model.CardPrices?.FirstOrDefault()?.AmazonPrice</li>
-                }
-                else
-                {
-                    <li>No prices available</li>
-                }
-            </ul>
-            <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Volver</a>
-        </div>
-    </div>
-</div>
+<h1>@Model.Name</h1>
+<p>@Model.Desc</p>
+
+<!-- Mostrar las imágenes -->
+@if (Model.Card_Images != null && Model.Card_Images.Count > 0)
+{
+    <img src="@Model.Card_Images[0].Image_Url" alt="@Model.Name" class="img-fluid" />
+}
+else
+{
+    <p>No image available</p>
+}
+
+<!-- Mostrar los precios -->
+@if (Model.Card_Prices != null && Model.Card_Prices.Count > 0)
+{
+    <p>Cardmarket Price: @Model.Card_Prices[0].Cardmarket_Price</p>
+    <p>Tcgplayer Price: @Model.Card_Prices[0].Tcgplayer_Price</p>
+    <p>Ebay Price: @Model.Card_Prices[0].Ebay_Price</p>
+    <p>Amazon Price: @Model.Card_Prices[0].Amazon_Price</p>
+    <p>Coolstuffinc Price: @Model.Card_Prices[0].Coolstuffinc_Price</p>
+}
+else
+{
+    <p>No prices available</p>
+}
